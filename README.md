@@ -5,7 +5,7 @@ Bootcampspot Project 2
 
 1. Before running any codes, just make sure the project folder structure is like:
 
-    repo_root
+   repo_root
     │
     ├── notebooks
     │   ├── 01_xxx -- notebook files
