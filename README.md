@@ -1,5 +1,5 @@
-# project_2
-Bootcampspot Project 2
+# Netflix or Disney+ and chill (ETL-Project)
+
 
 # Notebooks folder contains all the python codes
 
