@@ -5,7 +5,7 @@
 
 1. Before running any codes, just make sure the project folder structure is like:
 
-    repo_root
+repo_root
     │
     ├── notebooks
     │   ├── 01_xxx -- notebook files
@@ -21,6 +21,7 @@
     ├─kaggle.json -- api username and key (*necessary)
     ├─dblogin.json -- database connection info (*necessary)
     └─README.md -- this file
+
 
 2. In your python environment(PythonData for me), run following command to install kaggle api lib:
     pip install kaggle
