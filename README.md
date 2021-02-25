@@ -34,3 +34,9 @@ Bootcampspot Project 2
         "database" : "xxxx"
     }
 
+5. In postgresql, create a database call "movies"
+
+6. For flask solution, run the app.py, then you can use the following link to finish the work:
+    1) "/download?src=<imdb|kaggle>" or "/download" to download the data from imdb or kaggle or both of them to "./resources" folder
+    2) "/unzip" after downloading the data, unzip them to get the csv/tsv file
+    3) "/loaddata?src=<imdb|kaggle>" or "/loaddata" after unzipping the file, clean them up, load them into postgresql

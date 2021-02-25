@@ -15,6 +15,9 @@ def download():
         files = myfunc.imdbdonwload(download_path)
     elif downsrc == "kaggle":
         files = myfunc.kaggledownload(download_path)
+    elif downsrc is None:
+        files = myfunc.imdbdonwload(download_path)
+        files.extend(myfunc.kaggledownload(download_path))
     return jsonify(files)
 
 @app.route("/unzip")
@@ -30,6 +33,11 @@ def load():
         result = loaddata.loadimdb(download_path)
     elif param == "kaggle":
         result = loaddata.loadkaggle(download_path)
+    elif param is None:
+        result = loaddata.loadimdb(download_path)
+        result2 = loaddata.loadkaggle(download_path)
+        result["files"].extend(result2["files"])
+        result["tables"].extend(result2["tables"])
     return jsonify(result)
 
 if __name__ == "__main__":
