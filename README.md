@@ -24,8 +24,9 @@ This project will use relational database to store the data
 
 For the code to run properly there are several steps to be taken
 Please follow the steps below
-1.) pip install kaggle
-2.) pip install psycopg2
-3.) Get your kaggle.json file for api key form kaggle.com
-4.) Sign in or register an account
-5.) Once you have opened an account, create an api token
+
+1. pip install kaggle
+2. pip install psycopg2
+3. Get your kaggle.json file for api key form kaggle.com
+4. Sign in or register an account
+5. Once you have opened an account, create an api token
