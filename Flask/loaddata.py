@@ -23,6 +23,8 @@ def loadimdb(file_folder):
     df_title_final = df_title_final.reset_index(drop=True)
     df_title_final["ID"] = df_title_final["ID"].str.strip("t")
     df_title_final["ID"] = df_title_final["ID"].astype(int)
+    df_title_final["StartYear"] = df_title_final["StartYear"].fillna(0)
+    df_title_final["StartYear"] = df_title_final["StartYear"].astype(int)
 
     # clean up rating
     df_rating_final = df_rating.copy()
@@ -99,6 +101,8 @@ def loadkaggle(file_folder):
     df_disney_clean.columns = ["ID", "Title", "Type", "Rated", "Year", "ReleaseDate", "Genre", "Director", "Country"]
     df_disney_clean["ID"] = df_disney_clean["ID"].str.strip("t")
     df_disney_clean["ID"] = df_disney_clean["ID"].astype(int)
+    df_disney_clean["Year"] = df_disney_clean["Year"].fillna(0)
+    df_disney_clean["Year"] = df_disney_clean["Year"].astype(int)
     df_disney_clean = df_disney_clean.set_index("ID")
 
     # cleanup netflix

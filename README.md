@@ -18,6 +18,20 @@ repo_root
     │   ├── xxx.csv  
     │   └── xxx.sqlite
     │
+    ├── Flask
+    │   ├── app.py
+    │   ├── myfunc.py
+    │   ├── kaggle.py       
+    │   ├── dblogin.json  
+    │   └── kaggle.json
+    │
+    ├── SQL
+    │   ├── <xxx>.sql 
+    │   ├── <xxx>.sql
+    │   ├── <xxx>.sql    
+    │   ├── <xxx>.sql 
+    │   └── <xxx>.sql
+    │
     ├─kaggle.json -- api username and key (*necessary)
     ├─dblogin.json -- database connection info (*necessary)
     └─README.md -- this file
@@ -41,3 +55,5 @@ repo_root
     1) "/download?src=<imdb|kaggle>" or "/download" to download the data from imdb or kaggle or both of them to "./resources" folder
     2) "/unzip" after downloading the data, unzip them to get the csv/tsv file
     3) "/loaddata?src=<imdb|kaggle>" or "/loaddata" after unzipping the file, clean them up, load them into postgresql
+
+7. For SQL folder, there are some transformation 
