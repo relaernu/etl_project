@@ -1,43 +1,31 @@
-# Netflix or Disney+ and chill (ETL-Project)
+## Netflix or Disney+ and Chill? (ETL-Project)
 
+![disney&netflix](https://cdn.wccftech.com/wp-content/uploads/2020/02/netvsdis-1024x614-1.jpg)
 
-# Notebooks folder contains all the python codes
+#### -- Project Status: [Completed]
 
-1. Before running any codes, just make sure the project folder structure is like:
+### Project Intro/Objective
 
-repo_root
-    │
-    ├── notebooks
-    │   ├── 01_xxx -- notebook files
-    │   ├── 02_xxx 
-    │   ├── 03_xxx
-    │   └── xxx.py -- python files
-    │   
-    ├── resources
-    │   ├── xxx.tsv -- dataset files
-    │   ├── xxx.csv  
-    │   └── xxx.sqlite
-    │
-    ├─kaggle.json -- api username and key (*necessary)
-    ├─dblogin.json -- database connection info (*necessary)
-    └─README.md -- this file
+The purpose of this project is to create a database of movies where we can search the title and all the information regarding the movie will show up. By seaching through our data base wwe can also look up with platform the movie is available on whether it is Netflix or Disney+.
 
+### The Extraction
 
-2. In your python environment(PythonData for me), run following command to install kaggle api lib:
-    pip install kaggle
+The 2 datasets we use are [Netflix](https://www.kaggle.com/shivamb/netflix-shows) and [Disney+](https://www.kaggle.com/unanimad/disney-plus-shows) which were derived from Kaggle. We also used [IMDB](https://www.imdb.com/interfaces/) to create database for other people to search movie base on the title or region to see whether it is readily available for them and which platform it is on
 
-3. Get your kaggle.json file for api key from kaggle.com ——> account ——> Create New API Token and put it as the structure shows
+### The Transformation
 
-4. dblogin.json format as follow:
-    {
-        "username" : "xxxx",
-        "password" : "xxxx",
-        "database" : "xxxx"
-    }
+We cleaned up the data by separating the directors for the movies with multiple directors and the regions as well. Once we completed the cleaning we merge the datasets and these 2 steps were completed using SQL. The filtering was completed by using jupyter notebook and python script in flask in order to find the movies and information from the datasets for the 2 streaming platforms.
 
-5. In postgresql, create a database call "movies"
+### The Data Storage
 
-6. For flask solution, run the app.py, then you can use the following link to finish the work:
-    1) "/download?src=<imdb|kaggle>" or "/download" to download the data from imdb or kaggle or both of them to "./resources" folder
-    2) "/unzip" after downloading the data, unzip them to get the csv/tsv file
-    3) "/loaddata?src=<imdb|kaggle>" or "/loaddata" after unzipping the file, clean them up, load them into postgresql
+This project will use relational database to store the data
+
+### Instruction
+
+For the code to run properly there are several steps to be taken
+Please follow the steps below
+1.) pip install kaggle
+2.) pip install psycopg2
+3.) Get your kaggle.json file for api key form kaggle.com
+4.) Sign in or register an account
+5.) Once you have opened an account, create an api token
