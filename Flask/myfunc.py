@@ -133,7 +133,7 @@ def imdbdonwload(download_folder):
     # download crew
     while not downloaded:
         try:
-            file, msg = request.urlretrieve(url_crew, os.path.join(download_folder, "name.tsv.gz"))
+            file, msg = request.urlretrieve(url_name, os.path.join(download_folder, "name.tsv.gz"))
             downloaded = True
             downloadfiles.append(file)
         except:
