@@ -6,27 +6,29 @@
 
 ### Project Intro/Objective
 
-The purpose of this project is to create a database of movies where we can search the title and all the information regarding the movie will show up. By seaching through our data base wwe can also look up with platform the movie is available on whether it is Netflix or Disney+.
+The purpose of this project is to create a database of movies where users can search for a movie and all its information, and determine if it is available on Netflix or Disney+
 
 ### The Extraction
 
-The 2 datasets we use are [Netflix](https://www.kaggle.com/shivamb/netflix-shows) and [Disney+](https://www.kaggle.com/unanimad/disney-plus-shows) which were derived from Kaggle. We also used [IMDB](https://www.imdb.com/interfaces/) to create database for other people to search movie base on the title or region to see whether it is readily available for them and which platform it is on
+The 2 datasets we have used are [Netflix](https://www.kaggle.com/shivamb/netflix-shows) and [Disney+](https://www.kaggle.com/unanimad/disney-plus-shows) which were sourced from Kaggle. In addition, we incorporated them with the dataset of [IMDB](https://www.imdb.com/interfaces/) to standardise the rating for all movies and create our database to help users search for movies (e.g. by title or region) that are readily available on either streaming platform.
 
 ### The Transformation
 
-We cleaned up the data by separating the directors for the movies with multiple directors and the regions as well. Once we completed the cleaning we merge the datasets and these 2 steps were completed using SQL. The filtering was completed by using jupyter notebook and python script in flask in order to find the movies and information from the datasets for the 2 streaming platforms.
+As some movies are directed by more than one director, we cleaned up the data by
+separating a list of directors’ names from the provided data. Similarly, we did the same for a list of movie regions as some movies can be viewed in more than one region. We used jupyter notebooks for testing and once the data cleaning was completed, we merged the datasets by using SQL. We also used python script in flask to find movies and their information from the Netflix and Disney+ datasets.
 
 ### The Data Storage
 
-This project will use relational database to store the data
+This project used a relational database to store the data.
 
 ### Instruction
 
-For the code to run properly there are several steps to be taken
-Please follow the steps below
-
-1. pip install kaggle
-2. pip install psycopg2
-3. Get your kaggle.json file for api key form kaggle.com
-4. Sign in or register an account
-5. Once you have opened an account, create an api token
+1. Open gitbash/terminal and run “conda activate PythonData”.
+2. Next, run “pip install kaggle”.
+3. Then, run “pip install psycopg2”.
+4. Sign in or register for an account on kaggle.com to get your kaggle.json file for api key. Once you are in your account, go to “Account” and click on “Create New API Token”.
+5. Gitpull the project folder and add your downloaded kaggle.json file to the folder as shown in screenshot.
+6. Create a dblogin.json file and include the following information with your postgresSQL username and password: { "username" : "xxxx", "password" : "xxxx", "database" : "movies"}. Save it to the project folder as shown in screenshot.
+7. Create a “resources” folder as shown in screenshot.
+8. In postgresSQL, create a database and name it “movies”.
+9. Run jupyter notebooks in the following order: “01_Prepare_Files.ipynb”, “02_Load_IMDB_data”, “03_Load_Kaggle_Data”. The extracted files will be saved in the “resources” folder in the project folder.
