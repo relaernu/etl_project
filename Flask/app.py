@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import myfunc
 import loaddata
 import json
@@ -7,6 +7,10 @@ app = Flask(__name__)
 
 download_path = "resources"
 files = []
+
+@app.route("/")
+def home():
+    return render_template("index.html")
 
 @app.route("/download")
 def download():

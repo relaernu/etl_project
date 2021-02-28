@@ -1,21 +1,33 @@
--- split the column "Country" to different rows
--- create two more table for ID - country 1:1 mapping
-DROP TABLE IF EXISTS "DisneyPlus_Country";
-CREATE TABLE "DisneyPlus_Country"
+-- create the movie-country mapping table by spliting country column array value to rows
+DROP TABLE IF EXISTS movie_country;
+CREATE TABLE movie_country AS
+WITH directors (id, country)
 AS
-SELECT "ID", TRIM(unnest(string_to_array("Country", ','))) AS "Country"
-FROM "DisneyPlus";
+(
+    SELECT c.id, d."Country"
+    FROM "DisneyPlus" d JOIN NetflixDisney c
+    ON d."ID" = c.original_id
+    UNION
+    SELECT c.id, n."Country"
+    FROM "Netflix" n JOIN NetflixDisney c
+    ON n."n_ID" = c.original_id
+)
+SELECT id, TRIM(unnest(string_to_array(country, ','))) AS country
+FROM directors ORDER BY ID;
 
-DROP TABLE IF EXISTS "Netflix_Country";
-CREATE TABLE "Netflix_Country"
+-- create the movie-director mapping table by spliting director column array value to rows
+DROP TABLE IF EXISTS movie_director;
+CREATE TABLE movie_director AS
+WITH directors (id, directors)
 AS
-SELECT "n_ID", TRIM(unnest(string_to_array("Country", ','))) AS "Country"
-FROM "Netflix";
-
-
--- split director column from disney as well
-DROP TABLE IF EXISTS "DisneyPlus_Director";
-CREATE TABLE "DisneyPlus_Director"
-AS
-SELECT "ID", TRIM(unnest(string_to_array("Director", ','))) AS "Name"
-FROM "DisneyPlus";
+(
+    SELECT c.id, d."Director"
+    FROM "DisneyPlus" d JOIN NetflixDisney c
+    ON d."ID" = c.original_id
+    UNION
+    SELECT c.id, n."Director"
+    FROM "Netflix" n JOIN NetflixDisney c
+    ON n."n_ID" = c.original_id
+)
+SELECT id, TRIM(unnest(string_to_array(directors, ','))) AS name
+FROM directors ORDER BY ID;
