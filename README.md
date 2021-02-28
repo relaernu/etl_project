@@ -23,12 +23,22 @@ This project used a relational database to store the data.
 
 ### Instruction
 
+For the codes to run properly, there are several steps to be taken.
+Please follow the steps below:
+
 1. Open gitbash/terminal and run “conda activate PythonData”.
 2. Next, run “pip install kaggle”.
 3. Then, run “pip install psycopg2”.
-4. Sign in or register for an account on kaggle.com to get your kaggle.json file for api key. Once you are in your account, go to “Account” and click on “Create New API Token”.
-5. Gitpull the project folder and add your downloaded kaggle.json file to the folder as shown in screenshot.
-6. Create a dblogin.json file and include the following information with your postgresSQL username and password: { "username" : "xxxx", "password" : "xxxx", "database" : "movies"}. Save it to the project folder as shown in screenshot.
-7. Create a “resources” folder as shown in screenshot.
-8. In postgresSQL, create a database and name it “movies”.
-9. Run jupyter notebooks in the following order: “01_Prepare_Files.ipynb”, “02_Load_IMDB_data”, “03_Load_Kaggle_Data”. The extracted files will be saved in the “resources” folder in the project folder.
+4. Sign in or register for an account on kaggle.com to get your kaggle.json file for API key. Once you are in your account, go to “Account” and click on “Create New API Token”.
+5. Gitpull the project folder and add the downloaded kaggle.json file to the folder as shown in the screenshot.
+6. Create a dblogin.json file and include the following information with your PostgreSQL username and password: { username: “XXXX”, password: “XXXX”, database: “movies”}. Save it to the project folder as shown in the screenshot.
+7. In PostgreSQL, create a database and name it “movies”.
+8. Run jupyter notebooks in the following order: “01_Prepare_Files.ipynb”, “02_Load_IMDB_data”, “03_Load_Kaggle_Data”. The extracted files will be saved in the “resources” folder in the project folder.
+
+### Flask soluction
+
+1. Add kaggle.json and dblogin.json files to the “Flask” folder in the project folder.
+2. Run app.py.
+3. To download the data, run http://127.0.0.1:5000/download and data will be downloaded to the ..\Flask\resources folder.
+4. To unzip the downloaded data, run http://127.0.0.1:5000/unzip to extract the CSV/TSV files.
+5. After cleaning the extracted data, run http://127.0.0.1:5000/loaddata?src=imdb and http://127.0.0.1:5000/loaddata?src=kaggle to load them into PostgreSQL.
