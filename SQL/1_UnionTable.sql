@@ -1,10 +1,10 @@
 -- create union table
-DROP TABLE IF EXISTS NetFlixDisney
+DROP TABLE IF EXISTS NetflixDisney;
 CREATE TABLE NetFlixDisney (
 	id SERIAL,
 	title varchar,
 	director varchar,
-	rated varchar(8),
+	rated varchar(10),
 	country varchar,
 	year integer,
 	source varchar(1)
@@ -13,7 +13,7 @@ CREATE TABLE NetFlixDisney (
 WITH Combine(title, director, rated, country, year, source)
 AS
 (
-	SELECT "Title" AS title, "Director" AS director, "Rated" AS rated, "Country" AS country, CAST("Year" AS bigint) AS year, 'D' AS source
+	SELECT "Title" AS title, "Director" AS director, "Rated" AS rated, "Country" AS country, "Year" AS year, 'D' AS source
 	FROM "DisneyPlus"
 	UNION
 	SELECT "Title" AS title, "Director" AS director, "Rating" AS rated, "Country" AS country, "ReleaseYear" AS year, 'N' AS source
@@ -51,4 +51,3 @@ WHERE Rated NOT IN ('2-6', '7+', '14+', '18+');
 UPDATE NetFlixDisney
 SET Rated = 'NR'
 WHERE Rated is null;
-

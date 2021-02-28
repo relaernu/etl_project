@@ -70,16 +70,16 @@ def kaggledownload(download_folder):
                 time.sleep(5)
 
         # all stream platform data at https://www.kaggle.com/ruchi798/movies-on-netflix-prime-video-hulu-and-disney
-        downloaded = False
-        ddict["url"] = "https://www.kaggle.com/ruchi798/movies-on-netflix-prime-video-hulu-and-disney"
-        ddict["file"] = "MoviesOnStreamingPlatforms_updated.csv"
+        # downloaded = False
+        # ddict["url"] = "https://www.kaggle.com/ruchi798/movies-on-netflix-prime-video-hulu-and-disney"
+        # ddict["file"] = "MoviesOnStreamingPlatforms_updated.csv"
 
-        while not downloaded:
-            try:
-                downloaded = KaggleDownloadApi(ddict)
-                downloadfiles.append(os.path.join(download_folder, ddict["file"]))
-            except:
-                time.sleep(5)
+        # while not downloaded:
+        #     try:
+        #         downloaded = KaggleDownloadApi(ddict)
+        #         downloadfiles.append(os.path.join(download_folder, ddict["file"]))
+        #     except:
+        #         time.sleep(5)
 
         return downloadfiles
 

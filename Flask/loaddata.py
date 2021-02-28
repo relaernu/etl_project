@@ -17,27 +17,23 @@ def loadimdb(file_folder):
 
     # clean up title
     df_title_movie = df_title.loc[df_title["titleType"] == "movie"]
-    df_title_final = df_title_movie[["tconst", "primaryTitle", "originalTitle", "startYear", "endYear", "genres"]]
-    df_title_final.columns = ["ID", "PrimaryTitle", "OriginalTitle", "StartYear", "EndYear", "Genres"]
+    df_title_final = df_title_movie[["tconst", "primaryTitle", "originalTitle", "startYear"]]
+    df_title_final.columns = ["ID", "PrimaryTitle", "OriginalTitle", "ReleaseYear"]
     df_title_final = df_title_final.replace("\\N", np.NaN)
     df_title_final = df_title_final.reset_index(drop=True)
-    df_title_final["ID"] = df_title_final["ID"].str.strip("t")
-    df_title_final["ID"] = df_title_final["ID"].astype(int)
-    df_title_final["StartYear"] = df_title_final["StartYear"].fillna(0)
-    df_title_final["StartYear"] = df_title_final["StartYear"].astype(int)
+    # df_title_final["ID"] = df_title_final["ID"].str.strip("t")
+    # df_title_final["ID"] = df_title_final["ID"].astype(int)
+    df_title_final["ReleaseYear"] = df_title_final["ReleaseYear"].fillna(0)
+    df_title_final["ReleaseYear"] = df_title_final["ReleaseYear"].astype(int)
 
     # clean up rating
     df_rating_final = df_rating.copy()
     df_rating_final.columns = ["ID", "AverageRating", "Votes"]
-    df_rating_final["ID"] = df_rating_final["ID"].str.strip("t")
-    df_rating_final["ID"] = df_rating_final["ID"].astype(int)
 
     # clean up crew
     df_crew_final = df_crew.copy()
     df_crew_final.columns = ["ID", "Directors", "Writers"]
     df_crew_final = df_crew_final.replace("\\N", np.NaN)
-    df_crew_final["ID"] = df_crew_final["ID"].str.strip("t")
-    df_crew_final["ID"] = df_crew_final["ID"].astype(int)
 
     #clean up name
     df_name_final = df_name[["nconst","primaryName"]]
@@ -80,55 +76,49 @@ def loadimdb(file_folder):
 
     return {
         "files" : [title_file, rating_file, crew_file, name_file],
-        "tables" : ["IMDB", "IMDB_Director"]
+        "tables" : ["IMDB","IMDB_Director"]
     }
 
 def loadkaggle(file_folder):
     # files paths
     disney_file = os.path.join(file_folder, "disney_plus_shows.csv")
     netflix_file = os.path.join(file_folder, "netflix_titles.csv")
-    multi_file = os.path.join(file_folder, "MoviesOnStreamingPlatforms_updated.csv")
+    # multi_file = os.path.join(file_folder, "MoviesOnStreamingPlatforms_updated.csv")
 
     df_disney = pd.read_csv(disney_file)
     df_netflix = pd.read_csv(netflix_file)
-    df_multi = pd.read_csv(multi_file)
+    # df_multi = pd.read_csv(multi_file)
 
     # clean up disney dataframe
-    df_disney_clean = df_disney[["imdb_id", "title", "type", "rated", "year", "released_at", "genre", "director", "country"]]
+    df_disney_clean = df_disney[["imdb_id", "title", "type", "rated", "year", "director", "country"]]
 
     # filter 
     df_disney_clean = df_disney_clean.loc[df_disney_clean["type"] == "movie"]
-    df_disney_clean.columns = ["ID", "Title", "Type", "Rated", "Year", "ReleaseDate", "Genre", "Director", "Country"]
-    df_disney_clean["ID"] = df_disney_clean["ID"].str.strip("t")
-    df_disney_clean["ID"] = df_disney_clean["ID"].astype(int)
-    df_disney_clean["Year"] = df_disney_clean["Year"].fillna(0)
-    df_disney_clean["Year"] = df_disney_clean["Year"].astype(int)
+    df_disney_clean.columns = ["ID", "Title", "Type", "Rated", "ReleaseYear", "Director", "Country"]
+    #df_disney_clean["ID"] = df_disney_clean["ID"].str.strip("t")
+    #df_disney_clean["ID"] = df_disney_clean["ID"].astype(int)
+    df_disney_clean["ReleaseYear"] = df_disney_clean["ReleaseYear"].fillna(0)
+    df_disney_clean["ReleaseYear"] = df_disney_clean["ReleaseYear"].astype(int)
     df_disney_clean = df_disney_clean.set_index("ID")
 
     # cleanup netflix
     df_netflix_clean = df_netflix[["show_id", "type", "title", "director", "country", "release_year", "rating"]]
     df_netflix_clean = df_netflix_clean.loc[df_netflix_clean["type"] == "Movie"]
     df_netflix_clean.columns = ["n_ID", "Type", "Title", "Director", "Country", "ReleaseYear", "Rating"]
-    df_netflix_clean["n_ID"] = df_netflix_clean["n_ID"].str.strip("s")
-    df_netflix_clean["n_ID"] = df_netflix_clean["n_ID"].astype(int)
+    #df_netflix_clean["n_ID"] = df_netflix_clean["n_ID"].str.strip("s")
+    #df_netflix_clean["n_ID"] = df_netflix_clean["n_ID"].astype(int)
     df_netflix_clean = df_netflix_clean.set_index("n_ID")
 
     # "Director" column include multiple values, split them to 1:1 row
     df_netflix_director = df_netflix_clean[["Title", "Director"]]
-    df_netflix_director.fillna("N/A", inplace=True)
+    #df_netflix_director.fillna("N/A", inplace=True)
     df_netflix_director.reset_index(inplace=True)
     df_netflix_director.set_index(["n_ID", "Title"], inplace=True)
-    stack = df_netflix_director["Director"].apply(pd.Series).stack()
-    df_stack = pd.DataFrame(stack)
-    df_stack = df_stack.reset_index()
-    df_stack = df_stack.drop("level_2", axis=1)
-    df_stack.columns=["n_ID", "Title", "Director"]
-    df_stack.set_index("n_ID", inplace=True)
     
     # clean up the multi platform data
-    df_multi_clean = df_multi[["ID", "Title", "Year", "Age", "IMDb", "Netflix", "Disney+", "Type", "Directors", "Country"]]
-    df_multi_clean.columns = ["m_ID", "Title", "Year", "Age", "IMDB", "Netflix", "DisneyPlus", "Type", "Directors", "Country"]
-    df_multi_clean = df_multi_clean.set_index("m_ID")
+    # df_multi_clean = df_multi[["ID", "Title", "Year", "Age", "IMDb", "Netflix", "Disney+", "Type", "Directors", "Country"]]
+    # df_multi_clean.columns = ["m_ID", "Title", "Year", "Age", "IMDB", "Netflix", "DisneyPlus", "Type", "Directors", "Country"]
+    # df_multi_clean = df_multi_clean.set_index("m_ID")
 
     # load data into postgresql
     with open("../dblogin.json") as json_file:
@@ -145,13 +135,11 @@ def loadkaggle(file_folder):
     engine.execute('ALTER TABLE "Netflix" ADD PRIMARY KEY ("n_ID");')
 
     # Load multi platform and set primary key
-    df_multi_clean.to_sql("Multiplatform", engine, if_exists="replace")
-    engine.execute('ALTER TABLE "Multiplatform" ADD PRIMARY KEY ("m_ID");')
-
-    # Load netflix title - diretor mapping table
-    df_stack.to_sql("Netflix_Director", engine, if_exists="replace")
+    # df_multi_clean.to_sql("Multiplatform", engine, if_exists="replace")
+    # engine.execute('ALTER TABLE "Multiplatform" ADD PRIMARY KEY ("m_ID");')
 
     return {
-        "files" : [disney_file, netflix_file, multi_file],
-        "tables" : ["DisneyPlus", "Netflix", "Multiplatform", "Netflix_Director"]
+#        "files" : [disney_file, netflix_file, multi_file],
+        "files" : [disney_file, netflix_file],
+        "tables" : ["DisneyPlus", "Netflix"]
     }
