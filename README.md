@@ -37,8 +37,10 @@ Please follow the steps below:
 
 ### Flask soluction
 
-1. Add kaggle.json and dblogin.json files to the “Flask” folder in the project folder.
+For flask solution: 
+1. Add kaggle.json and dblogin.json files to the “Flask” folder in the project folder. 
 2. Run app.py.
-3. To download the data, run http://127.0.0.1:5000/download and data will be downloaded to the ..\Flask\resources folder.
+3. Run http://127.0.0.1:5000/download?src=<imdb|kaggle> or 
+ http://127.0.0.1:5000/download to download the data from imdb/kaggle or both, and they will be saved to ..\Flask\resources.
 4. To unzip the downloaded data, run http://127.0.0.1:5000/unzip to extract the CSV/TSV files.
-5. After cleaning the extracted data, run http://127.0.0.1:5000/loaddata?src=imdb and http://127.0.0.1:5000/loaddata?src=kaggle to load them into PostgreSQL.
+5. After cleaning the extracted data, run http://127.0.0.1:5000/loaddata?src=<imdb|kaggle> or http://127.0.0.1:5000/loaddata to load them into PostgreSQL.
