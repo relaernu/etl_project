@@ -74,8 +74,7 @@ Option 2: via Flask solution:
 
 ![Alt text](images/flaskresources.png?raw=true "Resources")
 
-    5. After cleaning the extracted data, run http://127.0.0.1:5000/loaddata?src=imdb, http://127.0.0.1:5000/loaddata?src=kaggle 
-or http://127.0.0.1:5000/loaddata to load the IMDB, Kaggle or both datasets into PostgreSQL.
+    5. After cleaning the extracted data, run http://127.0.0.1:5000/loaddata?src=imdb, http://127.0.0.1:5000/loaddata?src=kaggle or http://127.0.0.1:5000/loaddata to load the IMDB, Kaggle or both datasets into PostgreSQL.
 
 
 Option 3: via HTML
