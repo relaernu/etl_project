@@ -10,7 +10,7 @@ The purpose of this project is to create a database of movies where users can se
 
 # The Extraction
 
-The 2 datasets we have used are [Netflix] (https://www.kaggle.com/shivamb/netflix-shows) and [Disney+] (https://www.kaggle.com/unanimad/disney-plus-shows) which were sourced from Kaggle. In addition, we incorporated them with the dataset of [IMDB] (https://www.imdb.com/interfaces/) to standardise the rating for all movies and create our database to help users search for movies (e.g. by title or region) that are readily available on either streaming platform. 
+The 2 datasets we have used are [Netflix](https://www.kaggle.com/shivamb/netflix-shows) and [Disney+](https://www.kaggle.com/unanimad/disney-plus-shows) which were sourced from Kaggle. In addition, we incorporated them with the dataset of [IMDB](https://www.imdb.com/interfaces/) to standardise the rating for all movies and create our database to help users search for movies (e.g. by title or region) that are readily available on either streaming platform. 
 
 # The Transformation
 
