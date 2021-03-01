@@ -63,7 +63,7 @@ def loadimdb(file_folder):
     df_title_director.set_index("ID", inplace=True)
 
     # load data to postsql
-    with open("../dblogin.json") as json_file:
+    with open("dblogin.json") as json_file:
         login = json.load(json_file)
     json_file.close()
     engine = create_engine(f'postgresql://{login["username"]}:{login["password"]}@localhost/{login["database"]}')
@@ -121,7 +121,7 @@ def loadkaggle(file_folder):
     # df_multi_clean = df_multi_clean.set_index("m_ID")
 
     # load data into postgresql
-    with open("../dblogin.json") as json_file:
+    with open("dblogin.json") as json_file:
         login = json.load(json_file)
     json_file.close()
     engine = create_engine(f'postgresql://{login["username"]}:{login["password"]}@localhost/{login["database"]}')

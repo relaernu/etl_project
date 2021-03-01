@@ -58,4 +58,4 @@ repo_root
     3) "/unzip" after downloading the data, unzip them to get the csv/tsv file
     4) "/loaddata?src=<imdb|kaggle>" or "/loaddata" after unzipping the file, clean them up, load them into postgresql
 
-7. For SQL folder, there are some query and transformation of the datas 
+7. For SQL folder, there are some query and transformation of the datas
