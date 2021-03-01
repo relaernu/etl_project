@@ -78,6 +78,7 @@ Option 2: via Flask solution:
 
 
 Option 3: via HTML
+    
     1. Add kaggle.json and dblogin.json files to the “Flask” folder in the project folder. 
 
 ![Alt text](images/flask.png?raw=true "Flask")
