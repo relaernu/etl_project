@@ -22,8 +22,8 @@ repo_root
     │   ├── app.py
     │   ├── myfunc.py
     │   ├── kaggle.py       
-    │   ├── dblogin.json  
-    │   └── kaggle.json
+    │   ├── dblogin.json  -- database connection info (*necessary)
+    │   └── kaggle.json   -- api username and key (*necessary)
     │
     ├── SQL
     │   ├── <xxx>.sql 
@@ -40,7 +40,7 @@ repo_root
 2. In your python environment(PythonData for me), run following command to install kaggle api lib:
     pip install kaggle
 
-3. Get your kaggle.json file for api key from kaggle.com ——> account ——> Create New API Token and put it as the structure shows
+3. Get your kaggle.json file for api key from kaggle.com ——> account ——> Create New API Token and put it where as the structure shows
 
 4. dblogin.json format as follow:
     {
@@ -52,8 +52,11 @@ repo_root
 5. In postgresql, create a database call "movies"
 
 6. For flask solution, run the app.py, then you can use the following link to finish the work:
-    1) "/download?src=<imdb|kaggle>" or "/download" to download the data from imdb or kaggle or both of them to "./resources" folder
-    2) "/unzip" after downloading the data, unzip them to get the csv/tsv file
-    3) "/loaddata?src=<imdb|kaggle>" or "/loaddata" after unzipping the file, clean them up, load them into postgresql
+    1) "/" to home page
+    2) "/download?src=<imdb|kaggle>" or "/download" to download the data from imdb or kaggle or both of them to "./resources" folder
+    3) "/unzip" after downloading the data, unzip them to get the csv/tsv file
+    4) "/loaddata?src=<imdb|kaggle>" or "/loaddata" after unzipping the file, clean them up, load them into postgresql
 
-7. For SQL folder, there are some transformation 
+7. For SQL folder, there are some transformation for the datas:
+    1) 
+    2) 
