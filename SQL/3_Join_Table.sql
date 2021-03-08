@@ -40,4 +40,14 @@ AND n.source='D';
 SELECT n.*, i."ID" AS imdb_id, i."AverageRating" AS avg_rating, i."Votes" AS votes
 FROM netflixdisney n JOIN "IMDB" i
 ON n.title = i."PrimaryTitle" AND n.release_year = i."ReleaseYear"
-AND i."AverageRating" > 7
+AND i."AverageRating" > 7;
+
+-- searching movie with agerating 14+ and show its averagerating in imdb
+SELECT n.*, i."ID" AS imdb_id, i."AverageRating" AS avg_rating, i."Votes" AS votes
+FROM netflixdisney n JOIN "IMDB" i
+ON n.title = i."PrimaryTitle" AND n.release_year = i."ReleaseYear"
+WHERE EXISTS (
+    SELECT 1 FROM agerated a
+    WHERE n.age_rated = a.id
+    AND a.rated = '14+'
+);
